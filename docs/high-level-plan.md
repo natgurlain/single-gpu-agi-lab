@@ -1,157 +1,150 @@
 # High-Level Plan
 
+The root PDFs have a hierarchy:
+
+- Primary roadmap: `single_gpu_agi_arc_milestone_ladder.pdf`
+- Companion paper workflow: `agi_paper_implementation_ladder_2026.pdf`
+
+This file is a working summary. If it conflicts with the primary roadmap, follow the primary roadmap. Use the companion PDF for paper-selection and implementation workflow details.
+
 ## Goal
 
-Build real capability in modern AI systems on a single GPU by moving from usage to measurement, then to training, then to reproduction, then to original experiments.
+Become a strong single-GPU AI builder by implementing paper mechanisms, validating them with measured experiments, integrating useful pieces into ARC-AGI-3 / synthetic skill-acquisition systems, and publishing clear proof-of-work.
+
+The goal is not to claim that one GPU can train frontier AGI. The goal is to build the taste and engineering skill to turn papers into code, measurements, ablations, failure analyses, and coherent systems.
 
 ## North Star
 
-Over time, this lab should become a place where you can:
+This repo should become a public, reproducible lab with:
 
-- run strong open models locally
-- fine-tune and evaluate them reliably
-- reproduce selected research papers at small scale
-- publish useful artifacts and practical writeups
-- develop your own taste in data, evals, and training recipes
-- post consistently on X in a way that attracts serious builders
+- a tiny language model stack implemented from scratch;
+- eval harnesses for local models and ARC-like environments;
+- LoRA, QLoRA, and DPO implementations and runs;
+- inference and quantization benchmarks;
+- ARC-AGI-3 environment runners, replay analysis, state abstraction, planners, and world-model experiments;
+- paper implementation reports with metrics and decisions;
+- model cards, dataset cards, raw logs, plots, and public writeups.
 
-## What Not To Do
+## Strategy
 
-- Do not aim to pretrain a frontier base model from scratch.
-- Do not chase every new paper.
-- Do not confuse "using AI tools" with understanding model behavior.
-- Do not spend weeks on infrastructure before running simple baselines.
+The lab loop is:
 
-## Phases
+```text
+paper -> implementation -> toy validation -> ARC/synthetic integration -> ablation -> public artifact
+```
 
-## Phase 1: Foundations And Local Model Literacy
+Do not implement a paper because it is trendy. Implement it because it advances one of the lab capabilities:
 
-Duration: 2 to 4 weeks
+- neural fundamentals;
+- efficient training;
+- evaluation;
+- inference;
+- search and planning;
+- exploration;
+- world modeling;
+- object-centric reasoning;
+- program synthesis;
+- test-time adaptation;
+- agent memory and tool use.
 
-Main outcomes:
+## What From Scratch Means
 
-- understand model families, tokenizer basics, checkpoints, quantization, context length, and inference tradeoffs
-- run several open models locally and compare them
-- learn how VRAM, latency, and quality interact
+Implement from scratch:
 
-Focus areas:
+- model modules;
+- losses;
+- optimizers where useful;
+- search algorithms;
+- transition models;
+- replay buffers;
+- action ranking;
+- evaluation loops;
+- toy environments;
+- ablation scripts.
 
-- vLLM
-- transformers
-- quantization
-- prompting and structured evaluation
+Do not waste time implementing from scratch:
 
-## Phase 2: Data And Post-Training
+- CUDA kernels;
+- production tokenizer infrastructure;
+- distributed training frameworks;
+- logging frameworks;
+- production inference servers.
 
-Duration: 4 to 6 weeks
+Use PyTorch. Use Hugging Face, PEFT, TRL, vLLM, SGLang, and related tools after the core mechanism has been manually implemented once.
 
-Main outcomes:
+## Current First Project
 
-- prepare instruction datasets
-- run LoRA / QLoRA fine-tunes
-- compare base versus tuned behavior
-- understand overfitting, formatting, and task mismatch
+**Project 001: Tiny LLaMA-style LM plus eval harness plus ARC smoke test**
 
-Focus areas:
+This is the first real project because it creates reusable infrastructure for the rest of the roadmap.
 
-- PEFT
-- TRL
-- Unsloth or Axolotl
-- dataset curation
+Build:
 
-## Phase 3: Preference Optimization And Small RL
+1. RMSNorm.
+2. RoPE.
+3. Causal attention.
+4. LLaMA-style transformer block.
+5. Tiny GPT model.
+6. BPE or SentencePiece wrapper.
+7. Training loop.
+8. Checkpointing.
+9. Eval script.
+10. ARC-AGI-3 random/systematic baseline runner.
 
-Duration: 3 to 6 weeks
+Minimum acceptance criteria:
 
-Main outcomes:
+- core modules have tests;
+- tiny model overfits a tiny batch;
+- full training run completes without NaNs;
+- eval script runs on a checkpoint;
+- generation script works;
+- ARC baseline saves replay/logs;
+- one-command reproduction is documented;
+- one technical writeup and one public thread are published.
 
-- understand SFT versus DPO versus RL-style tuning
-- run small DPO experiments
-- inspect GRPO style workflows conceptually and then experimentally
-- build reward or rule-based evaluation loops
+## Milestone Gates
 
-Focus areas:
+Use capability gates, not calendar promises.
 
-- DPO
-- GRPO
-- reward design
-- evals and failure analysis
+1. Lab OS and AGI compass.
+2. Neural network fundamentals.
+3. Transformer mechanics.
+4. Small LMs from scratch.
+5. Evaluation spine.
+6. Single-GPU post-training.
+7. Preference optimization.
+8. Inference and serving.
+9. Training systems and dynamics.
+10. Search, planning, and agents.
+11. World models and exploration.
+12. ARC abstraction and DSLs.
+13. ARC-AGI-3 competitive system.
+14. Public research lab and capstone.
 
-## Phase 4: Tiny Pretraining And Mechanistic Intuition
+## Project Acceptance Standard
 
-Duration: 2 to 6 weeks
+A project is accepted only if it has:
 
-Main outcomes:
+- a falsifiable hypothesis;
+- a baseline;
+- a metric;
+- config, seed, commit, and hardware details;
+- logs and raw outputs where practical;
+- failure analysis with examples;
+- a public artifact;
+- a stop condition or kill criterion.
 
-- train a small transformer from scratch
-- understand tokenization, curriculum, scaling, and optimization basics
-- inspect loss curves and common failure modes
+## Public Proof-Of-Work
 
-Focus areas:
+Every serious milestone should produce at least one artifact:
 
-- tiny transformer training
-- small corpora
-- optimizer and scheduler choices
-- ablations
+- GitHub code;
+- short README;
+- chart;
+- failure analysis;
+- X thread;
+- demo video;
+- notebook;
+- technical blog post.
 
-## Phase 5: Research Reproductions
-
-Duration: ongoing
-
-Main outcomes:
-
-- reproduce a focused set of practical papers
-- publish notes, code, charts, and takeaways
-- learn to separate important ideas from hype
-
-Priority papers and lines of work:
-
-- QLoRA
-- DoRA
-- DPO
-- DeepSeekMath / GRPO lineage
-- Open-R1 style reproductions
-
-## Phase 6: Build In Public
-
-Duration: ongoing
-
-Main outcomes:
-
-- develop a recognizable niche
-- accumulate trust through practical outputs
-- attract the right technical audience
-
-Default content style:
-
-- daily short post with one concrete takeaway
-- weekly thread with a benchmark, notebook result, or reproduction summary
-- always include specifics: model, tool, constraint, failure, or metric
-
-Good niches for this lab:
-
-- single-GPU reproductions
-- local inference and quantization benchmarks
-- practical post-training notes
-- small-model reasoning experiments
-
-## Cadence
-
-Use this weekly rhythm:
-
-1. Read 1 core source at a realistic depth.
-2. Run 1 small notebook-based experiment or benchmark.
-3. Record metrics and failures.
-4. Post 1 concrete update on X.
-5. Decide the next experiment from evidence, not hype.
-
-## Success Criteria
-
-You are on track if, after a few months, you can do these without guessing:
-
-- choose a model that fits your hardware and task
-- explain when to use LoRA, QLoRA, DPO, or small RL
-- build a dataset for a narrow task
-- run an eval and interpret the result
-- reproduce at least one paper at reduced scale
-- write a clear technical thread or post with numbers and lessons
+The voice should be useful, reproducible, technical, and honest. Avoid grand predictions, cherry-picked generations, benchmark screenshots without configs, and fine-tune announcements without before/after evals.

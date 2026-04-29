@@ -1,47 +1,65 @@
 # X Post Template
 
-Use this at the end of each day. Keep posts concrete, short, and evidence-based.
+Use this for public proof-of-work. The primary roadmap and companion paper-workflow PDFs define the standard: posts should be concrete, measured, honest, and tied to artifacts.
 
-## Short Post Template
+## Short Implementation Post
 
-Today in my single-GPU AI lab:
+I implemented `[paper/mechanism]` from scratch on one GPU.
 
-- Hardware: `[GPU / VRAM]`
-- Focus: `[what I tested or learned]`
-- Model / tool: `[exact model or tool]`
-- Main takeaway: `[one sentence]`
-- Surprise / failure: `[one sentence]`
+What worked:
+- `[specific result]`
 
-Next: `[next action]`
+What failed:
+- `[specific failure]`
 
-## Thread Template
+Metric:
+- baseline: `[number or behavior]`
+- new method: `[number or behavior]`
 
-1. I’m building a practical single-GPU AI lab on `[hardware]`.
+Next:
+- `[next experiment]`
 
-2. Today I worked on `[task]` using `[model/tool]`.
+Code/report:
+- `[link when public]`
 
-3. What I actually did:
-   - `[step]`
-   - `[step]`
-   - `[step]`
+## Failure Report
 
-4. What I learned:
-   - `[lesson]`
-   - `[lesson]`
+Failed experiment: `[name]`
 
-5. What failed or was harder than expected:
-   - `[failure]`
+Hypothesis:
+`[what I expected]`
 
-6. Why this matters:
-   - `[practical reason]`
+Result:
+`[what happened]`
 
-7. Next experiment:
-   - `[next step]`
+Likely cause:
+`[diagnosis]`
+
+What I will change:
+`[next fix or kill decision]`
+
+Why this matters:
+`[what the failure teaches]`
+
+## Longer Technical Post
+
+Title: What I learned implementing `[paper/mechanism]` for ARC-style agents
+
+1. Why I chose it.
+2. Core mechanism.
+3. Minimal implementation.
+4. Toy result.
+5. ARC/synthetic integration.
+6. Metrics.
+7. Failure modes.
+8. What I will keep, archive, or reject.
 
 ## Rules
 
-- Always mention the exact model or tool.
-- Always mention the constraint if it matters.
-- Prefer one specific result over three vague claims.
-- Include one failure or surprise when possible.
-- If you have numbers, include numbers.
+- Always include the exact mechanism, model, dataset, or environment.
+- Always include baseline and metric when available.
+- Mention the single-GPU constraint when it affects design.
+- Include failures and caveats.
+- Do not post benchmark screenshots without configs.
+- Do not claim a toy run reproduces a frontier-scale result.
+- Do not announce a fine-tune without before/after evals.
