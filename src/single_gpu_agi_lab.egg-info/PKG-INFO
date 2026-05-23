@@ -1,3 +1,37 @@
+Metadata-Version: 2.4
+Name: single-gpu-agi-lab
+Version: 0.1.0
+Summary: Milestone-driven single-GPU AI systems lab for paper-to-code implementations, evals, and ARC-AGI-3 agents.
+License: MIT License
+        
+        Copyright (c) 2026 Nat Gurlain
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+Requires-Dist: ruff>=0.4; extra == "dev"
+Dynamic: license-file
+
 # Single-GPU AGI Lab
 
 This repository is a practical, single-GPU research lab for learning modern AI systems by turning papers into working code, measured experiments, failure analyses, and public artifacts.
@@ -51,16 +85,6 @@ It builds the reusable spine of the lab:
 ## Repository Status
 
 This repo is milestone-driven, not time-driven. Older time-boxed onboarding files have been removed so the project follows the PDF roadmap directly.
-
-Set up the GPU development environment with:
-
-```bash
-scripts/setup_env.sh
-```
-
-The setup script uses `/home/pawel/mambaforge` by default, creates the `single-gpu-agi-lab`
-environment, installs this repo in editable mode, installs GPU PyTorch and JAX, and verifies both
-frameworks can run on the NVIDIA GPU.
 
 The canonical priority order starts with the implementation spine:
 

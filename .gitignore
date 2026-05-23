@@ -1,0 +1,13 @@
+# Python caches and local test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Local virtual environments
+.venv/
+venv/
+
+# Local Codex/session metadata
+.codex
+
